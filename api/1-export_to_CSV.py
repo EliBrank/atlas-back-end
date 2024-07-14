@@ -2,8 +2,8 @@
 
 """defines get_todo_progress function"""
 
-import requests
 import csv
+import requests
 
 BASE_URL = "https://jsonplaceholder.typicode.com"
 
