@@ -3,6 +3,7 @@
 """defines get_todo_progress function"""
 
 import requests
+from sys import argv
 
 BASE_URL = "https://jsonplaceholder.typicode.com"
 
@@ -45,7 +46,6 @@ def get_todo_progress(employee_id: str):
 
 
 if __name__ == "__main__":
-    from sys import argv
 
     if len(argv) == 2:
         employee_id = None
