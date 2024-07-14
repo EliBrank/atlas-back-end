@@ -32,7 +32,7 @@ def get_todo_progress(employee_id: str):
         for task in todo_data:
             csv_data.append({
                 "USER_ID": employee_data.get("id"),
-                "USERNAME": employee_data.get("name"),
+                "USERNAME": employee_data.get("username"),
                 "TASK_COMPLETED_STATUS": task.get("completed"),
                 "TASK_TITLE": task.get("title")
             })
