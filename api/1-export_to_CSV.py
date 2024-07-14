@@ -40,7 +40,9 @@ def get_todo_progress(employee_id: str):
         with open(f"{employee_id}.csv", mode="w") as csvfile:
             # fieldnames pulled from csv_data dict dynamically
             fieldnames = csv_data[0].keys()
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer = csv.DictWriter(
+                csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL
+            )
             # writer.writeheader()
             # writerows iterates through csv_data list
             writer.writerows(csv_data)
