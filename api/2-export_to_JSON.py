@@ -2,7 +2,8 @@
 
 """defines get_todo_progress function"""
 
-import requests, csv
+import json
+import requests
 
 BASE_URL = "https://jsonplaceholder.typicode.com"
 
@@ -27,22 +28,18 @@ def get_todo_progress(employee_id: str):
         employee_data = response_employee.json()
         todo_data = response_todos.json()
 
-        csv_data = []
+        json_todo_data = []
         for task in todo_data:
-            csv_data.append({
-                "USER_ID": employee_data.get("id"),
-                "USERNAME": employee_data.get("name"),
-                "TASK_COMPLETED_STATUS": task.get("completed"),
-                "TASK_TITLE": task.get("title")
+            json_todo_data.append({
+                "task": task.get("title"),
+                "completed": task.get("completed"),
+                "username": employee_data.get("username"),
             })
 
-        with open(f"{employee_id}.csv", mode="w") as csvfile:
-            # fieldnames pulled from csv_data dict dynamically
-            fieldnames = csv_data[0].keys()
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            # writer.writeheader()
-            # writerows iterates through csv_data list
-            writer.writerows(csv_data)
+        json_todo_data_dict = {f"{employee_id}": json_todo_data}
+
+        with open(f"{employee_id}.json", mode="w") as jsonfile:
+            json.dump(json_todo_data_dict, jsonfile)
 
 
 if __name__ == "__main__":
